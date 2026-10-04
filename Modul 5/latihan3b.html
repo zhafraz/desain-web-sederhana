@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animasi Transisi CSS3 - Baling Baling</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        .box {
+            width: 40%;
+            height: 100px;
+            background: orange;
+            border: 2px solid #212121;
+            -webkit-transition: all 1s ease-in-out;
+            transition: all 1s ease-in-out;
+        }
+
+        @keyframes berputar {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (orientation: landscape) {
+            .box {
+                width: 100%;
+                background: blue;
+                border-radius: 50%; 
+                
+                animation: berputar 2s linear infinite; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <h3>Transisi & Animasi CSS3</h3>
+    <div class="box"></div>
+    <p>
+        Ubah orientasi ke landscape/portrait (atau ubah ukuran lebar/tinggi jendela browser) 
+        dan sebaliknya untuk melihat efek transisi bentuk, warna, dan putaran baling-baling!
+    </p>
+</body>
+</html>
