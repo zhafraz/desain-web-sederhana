@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Kalkulator Sederhana</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #dce3f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .kalkulator {
+        background-color: white;
+        width: 280px;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      h2 {
+        text-align: center;
+        color: #3b4cca;
+        margin-top: 0;
+        font-size: 20px;
+      }
+
+      label {
+        font-size: 13px;
+        color: #777;
+      }
+
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+        margin-bottom: 12px;
+        border: 2px solid #c5cae9;
+        border-radius: 6px;
+        font-size: 15px;
+        box-sizing: border-box;
+        background-color: #f5f6ff;
+        text-align: right;
+      }
+
+      input:focus {
+        border-color: #3b4cca;
+        outline: none;
+      }
+
+      .baris-tombol {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .baris-tombol button {
+        flex: 1;
+        padding: 12px 0;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        color: white;
+      }
+
+      #btnPlus {
+        background-color: #5c6bc0;
+      }
+      #btnMinus {
+        background-color: #29b6f6;
+      }
+      #btnKali {
+        background-color: #66bb6a;
+      }
+      #btnBagi {
+        background-color: #ffa726;
+      }
+
+      #btnPlus:hover {
+        background-color: #3949ab;
+      }
+      #btnMinus:hover {
+        background-color: #039be5;
+      }
+      #btnKali:hover {
+        background-color: #43a047;
+      }
+      #btnBagi:hover {
+        background-color: #fb8c00;
+      }
+
+      #btnReset {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 14px;
+        background-color: #f0f0f0;
+        color: #888;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 13px;
+        cursor: pointer;
+      }
+
+      #btnReset:hover {
+        background-color: #e0e0e0;
+        color: #555;
+      }
+
+      .kotak-hasil {
+        background-color: #3b4cca;
+        border-radius: 10px;
+        padding: 14px;
+        text-align: center;
+      }
+
+      .kotak-hasil p {
+        margin: 0 0 4px 0;
+        font-size: 11px;
+        color: #9fa8da;
+      }
+
+      .kotak-hasil span {
+        font-size: 28px;
+        font-weight: bold;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="kalkulator">
+      <h2>Kalkulator</h2>
+
+      <label>Angka 1</label>
+      <input type="number" id="var1" placeholder="0" />
+
+      <label>Angka 2</label>
+      <input type="number" id="var2" placeholder="0" />
+
+      <div class="baris-tombol">
+        <button id="btnPlus" onclick="jumlah()">+</button>
+        <button id="btnMinus" onclick="kurang()">−</button>
+        <button id="btnKali" onclick="kali()">×</button>
+        <button id="btnBagi" onclick="bagi()">÷</button>
+      </div>
+
+      <button id="btnReset" onclick="resetNilai()">Reset</button>
+
+      <div class="kotak-hasil">
+        <p>Hasil</p>
+        <span id="hasil">0</span>
+      </div>
+    </div>
+
+    <script>
+      function ambilNilai() {
+        var a = parseFloat(document.getElementById("var1").value);
+        var b = parseFloat(document.getElementById("var2").value);
+        if (isNaN(a) || isNaN(b)) {
+          alert("Masukkan kedua angka terlebih dahulu!");
+          return null;
+        }
+        return { a: a, b: b };
+      }
+
+      function tampilHasil(nilai) {
+        document.getElementById("hasil").innerText = nilai;
+      }
+
+      function jumlah() {
+        var v = ambilNilai();
+        if (v == null) return;
+        tampilHasil(v.a + v.b);
+      }
+
+      function kurang() {
+        var v = ambilNilai();
+        if (v == null) return;
+        tampilHasil(v.a - v.b);
+      }
+
+      function kali() {
+        var v = ambilNilai();
+        if (v == null) return;
+        tampilHasil(v.a * v.b);
+      }
+
+      function bagi() {
+        var v = ambilNilai();
+        if (v == null) return;
+        if (v.b == 0) {
+          alert("Tidak bisa membagi dengan angka 0!");
+          return;
+        }
+        tampilHasil(v.a / v.b);
+      }
+
+      function resetNilai() {
+        document.getElementById("var1").value = "";
+        document.getElementById("var2").value = "";
+        document.getElementById("hasil").innerText = "0";
+      }
+    </script>
+  </body>
+</html>
