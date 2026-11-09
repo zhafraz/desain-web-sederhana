@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Latihan 1 - Web Storage Member</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin-top: 80px;
+            background-color: #f8f9fa;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 14px;
+            margin: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .btn-set {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+        }
+        .btn-del {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1 id="namaMember">Selamat Datang, Member!</h1>
+        <button class="btn-set" onclick="gantiNama(event)">Masukkan Nama</button>
+        <button class="btn-del" onclick="hapusNama()">Hapus Nama</button>
+    </center>
+
+    <script type="text/javascript">
+        const namaMember = document.getElementById('namaMember');
+
+        function cekPenyimpanan() {
+            const namaTersimpan = localStorage.getItem('nama');
+            if (namaTersimpan) {
+                namaMember.innerHTML = 'Halo ' + namaTersimpan + '!';
+            } else {
+                namaMember.innerHTML = 'Selamat Datang, Member!';
+            }
+        }
+
+        cekPenyimpanan();
+
+        function gantiNama(e) {
+            let nama = prompt('Masukkan nama Anda:');
+            if (nama && nama.trim() !== "") {
+                localStorage.setItem("nama", nama.trim());
+                cekPenyimpanan();
+            } else if (nama !== null) {
+                alert('Nama tidak boleh kosong!');
+            }
+            if (e) e.preventDefault();
+        }
+
+        function hapusNama() {
+            if (localStorage.getItem('nama')) {
+                localStorage.removeItem('nama');
+                alert('Nama member berhasil dihapus!');
+                cekPenyimpanan();
+            } else {
+                alert('Belum ada data nama yang tersimpan!');
+            }
+        }
+    </script>
+</body>
+</html>
